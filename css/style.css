@@ -1,18 +1,48 @@
+/* 基本的なcssここから */
 * {
   box-sizing: border-box;
 }
+/*
+  *という記述で全ての要素に対して設定されるようになります。
+  paddingがwidthに含まれるように設定します。
+  例）headerのwidthがmax960pxなので、左右のpadding、4%ずつ合わせて8%が960pxに含まれるようになります。
+  box-sizing: border-box;が設定されていなければ、headerの長さはデバイス幅が1440pxのとき、960px + 1440px*0.08 = 1075.2pxとなります。
+  */
 img {
   width: 100%;
   height: auto;
 }
+/*
+  imgタグには基本的にwidth: 100%; height: auto;を設定してあげます。
+  具体的な画像のサイズの設定はimgタグを囲っているdivタグなどの要素に対してかけてあげます。
+  width: 100%とすることで画像の幅がその親要素の幅にぴったりつくようになります。
+  height: autoとすることで画像の縦横の比率が保たれ、画像が縦横に伸びたりしなくなります。
+  */
 a {
-  transition: 0.3s all ease;
   text-decoration: none;
+  transition: 0.3s all ease;
 }
+/*
+  text-decoration: none;について：
+  aタグは何も設定していない場合、下線がついてしまいます。
+  この下線はデザインでは付けない場合が多いので、このようにすべてのaタグに対してtext-decoration: none;を設定してあげることで、毎回下線を消さずに済みます。
+
+  transition: 0.3s all ease;について：
+  transitionを設定することで、要素のCSSプロパティが変化する際のアニメーションの速度を操作することができます。
+  ・0.3s → 0.3秒
+  ・all → すべてのcssプロパティに対して
+  ・ease -> 徐々に加速する
+  */
 a:hover {
   opacity: 0.8;
 }
-
+/*
+  a:hoverの意味：
+  a:hoverとすることで、aタグにホバー（カーソルを合わせる）したときの設定ができるようになります。
+  opacityとは不透明度という意味です。
+　このような設定をすることで、aタグにカーソルを合わせたときに若干その要素が薄くなり、クリックできるということが視覚的に分かりやすくなります。
+　さらにaタグにはtransitionが掛けられているので、要素がふわっと薄くなります。
+  */
 h1,
 h2,
 h3,
@@ -20,34 +50,42 @@ p,
 a {
   color: #24292e;
 }
+/*
+  このサイトでは文字の色が#24292eと設定されています。
+  文字の色を毎回指定するとcssファイルの行数が嵩んでしまうため、このようにすべてのh1, h2, h3, p, aタグに対して設定してあげます。
+  */
+
+/* 基本的なcssここまで */
 
 /* 共通クラス */
+/* *共通クラスとは：デザインが共通しているパーツは同じクラス名を付けてcssファイルの行数が増えるのを避けます */
 .section-heading {
-  color: #383e45;
-  font-size: 32px;
-  font-weight: bold;
-  text-transform: capitalize;
-  border-bottom: 1px solid #383e45;
-  margin: 0 auto 80px;
-  width: fit-content;
+  color: #383e45; /*文字の色*/
+  font-size: 32px; /*文字の大きさを32pxに*/
+  font-weight: bold; /*文字の太さを太く*/
+  text-transform: capitalize; /*小文字の部分の一文字目だけを大文字に*/
+  border-bottom: 1px solid #383e45; /*要素の下辺に幅1px、色#383e45の直線（solid）の枠線を表示*/
+  margin: 0 auto 80px; /*要素の外側の余白を設定。上に0、左右に自動的な値（結果的に要素が左右中央寄せに）、下に80pxの余白が付く*/
+  width: fit-content; /*要素のサイズを中身ピッタリにする*/
 }
+/* 共通クラスここまで */
 
 /* ヘッダー */
 .header {
-  margin: 0 auto;
-  padding: 10px 4%;
-  max-width: 960px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin: 0 auto; /*要素の外側に余白を設定。上下に0、左右に自動的に。*/
+  padding: 10px 4%; /*要素の内側に余白を設定。上下に10px、左右に親要素（この場合はbody=デバイス幅）の4%ずつ余白がつく。*/
+  max-width: 960px; /*要素の最大横幅を960pxに*/
+  display: flex; /*要素の中にある要素を横並びに。*/
+  justify-content: space-between; /*display: flexで横並びにした要素を左右いっぱいに寄せる。空白（space）を横並びにしている要素の間（between）に。*/
+  align-items: center; /*display: flexで横並びにした要素を上下中央揃えにする。*/
 }
 .header__logo {
-  width: 120px;
+  width: 120px; /*画像が入っている*/
 }
 .header__menu ul {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 30px; /*display: flexで横並びにした要素の間隔を30pxに*/
 }
 .header__link {
   font-size: 14px;
@@ -57,12 +95,12 @@ a {
 
 /* FV */
 .fv {
-  height: 600px;
+  height: 600px; /*お手本のサイトではFVの自転車の写真は高さ600pxが設定されています*/
   margin-bottom: 80px;
 }
 .fv img {
-  height: 100%;
-  object-fit: cover;
+  height: 100%; /*heightを600pxに指定したいので、widthもheightも100%にします。*/
+  object-fit: cover; /*width: 100%; height: 100%;を設定していると画像が引き伸ばされてしまうのでその対策のためにobject-fit: cover;をかけて画像を正しく表示します*/
 }
 
 /* about */
@@ -73,14 +111,14 @@ a {
   display: flex;
   gap: 30px;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /*display: flex;で横並びにした要素を左右中央に寄せます*/
 }
 .about__img {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
+  border-radius: 50%; /*border-radiusで角丸を作り、50%とすることでwidthとheightが同じときに円にすることができます*/
+  overflow: hidden; /*要素から子要素がはみ出した場合、はみ出ている部分を非表示にします。今回はimgタグを囲んでいるdivタグにborder-radius: 50%;をかけているだけなので、overflow:hidden;を設定していないと、画像は丸くなりません。*/
+  flex-shrink: 0; /*display: flex;が掛けられている要素の子要素が想定のwidthよりも縮まないように設定します。*/
 }
 .about__text {
   width: 400px;
@@ -89,12 +127,12 @@ a {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
-  text-transform: uppercase;
+  text-transform: uppercase; /*小文字をすべて大文字にします*/
 }
 .about__paragraph {
   font-size: 14px;
-  line-height: 1.2;
-  /* letter-spacing: 0.04em; */
+  line-height: 1.2; /*行間を設定します。単位はなし。*/
+  letter-spacing: 0.01em; /*文字と文字の間隔を設定します。単位はem。*/
 }
 
 /* bicycle */
@@ -107,7 +145,7 @@ a {
   gap: 20px;
 }
 .bicycle__item {
-  text-align: center;
+  text-align: center; /*テキストを左右中央寄せにします。*/
 }
 .bicycle__img {
   width: 280px;
