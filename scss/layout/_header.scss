@@ -1,0 +1,21 @@
+.header {
+  margin: 0 auto;
+  padding: 10px 4%;
+  max-width: 960px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  width: 120px;
+}
+.header__menu ul {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.header__link {
+  font-size: 14px;
+  color: #24292e;
+  text-transform: capitalize;
+}

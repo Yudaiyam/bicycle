@@ -1,48 +1,180 @@
-/* 基本的なcssここから */
+@charset "UTF-8";
+/*
+【注意事項①】
+今回はstyle.cssが既にある状態からscssを作成→コンパイルします。
+そのためstyle.scssという名前で最初にscssファイルを作成してコンパイルしてしまうと、せっかく書いたstyle.cssの内容がすべて上書きされて消えてしまいます。
+そのため、最初はtest.scssなどのようにscssファイルの名前をstyle.scssではないものにして作業しましょう。
+生成されたtest.cssをindex.htmlで読み込んでレイアウト崩れしているところなどがないようであれば、最後にtest.scssの名前をstyle.scssと変えましょう。
+すべて完了したらcssフォルダー内のtest.cssは削除してしまって大丈夫です*/
+/*
+【注意事項②】
+今回の目的ははscssのファイル構成について理解していただきたくことです。
+このサイトは規模も小さいため、scssの変数と関数は今回は作成する必要はないです。
+そのためこのお手本でもglobalフォルダーは作成していません。
+ただ、今後は必ずglobalを作成する必要はあります。
+*/
+/*
+【scssのコンパイル方法とその設定変更について】
+scssのコンパイル（cssへの変換のこと）は「Live Sass Compiler」というVSCodeの拡張機能を使用します。
+以下のサイトの手順に従って、拡張機能をインストール、設定を変更しましょう。
+
+https://shogo-log.com/live-sass-compiler/
+
+※ savePath: "/css"; となるようにして下さい
+*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 * {
   box-sizing: border-box;
 }
-/*
-  *という記述で全ての要素に対して設定されるようになります。
-  paddingがwidthに含まれるように設定します。
-  例）headerのwidthがmax960pxなので、左右のpadding、4%ずつ合わせて8%が960pxに含まれるようになります。
-  box-sizing: border-box;が設定されていなければ、headerの長さはデバイス幅が1440pxのとき、960px + 1440px*0.08 = 1075.2pxとなります。
-  */
+
 img {
   width: 100%;
   height: auto;
 }
-/*
-  imgタグには基本的にwidth: 100%; height: auto;を設定してあげます。
-  具体的な画像のサイズの設定はimgタグを囲っているdivタグなどの要素に対してかけてあげます。
-  width: 100%とすることで画像の幅がその親要素の幅にぴったりつくようになります。
-  height: autoとすることで画像の縦横の比率が保たれ、画像が縦横に伸びたりしなくなります。
-  */
+
 a {
   text-decoration: none;
   transition: 0.3s all ease;
 }
-/*
-  text-decoration: none;について：
-  aタグは何も設定していない場合、下線がついてしまいます。
-  この下線はデザインでは付けない場合が多いので、このようにすべてのaタグに対してtext-decoration: none;を設定してあげることで、毎回下線を消さずに済みます。
 
-  transition: 0.3s all ease;について：
-  transitionを設定することで、要素のCSSプロパティが変化する際のアニメーションの速度を操作することができます。
-  ・0.3s → 0.3秒
-  ・all → すべてのcssプロパティに対して
-  ・ease -> 徐々に加速する
-  */
 a:hover {
   opacity: 0.8;
 }
-/*
-  a:hoverの意味：
-  a:hoverとすることで、aタグにホバー（カーソルを合わせる）したときの設定ができるようになります。
-  opacityとは不透明度という意味です。
-　このような設定をすることで、aタグにカーソルを合わせたときに若干その要素が薄くなり、クリックできるということが視覚的に分かりやすくなります。
-　さらにaタグにはtransitionが掛けられているので、要素がふわっと薄くなります。
-  */
+
 h1,
 h2,
 h3,
@@ -50,118 +182,118 @@ p,
 a {
   color: #24292e;
 }
-/*
-  このサイトでは文字の色が#24292eと設定されています。
-  文字の色を毎回指定するとcssファイルの行数が嵩んでしまうため、このようにすべてのh1, h2, h3, p, aタグに対して設定してあげます。
-  */
 
-/* 基本的なcssここまで */
-
-/* 共通クラス */
-/* *共通クラスとは：デザインが共通しているパーツは同じクラス名を付けてcssファイルの行数が増えるのを避けます */
 .section-heading {
-  color: #383e45; /*文字の色*/
-  font-size: 32px; /*文字の大きさを32pxに*/
-  font-weight: bold; /*文字の太さを太く*/
-  text-transform: capitalize; /*小文字の部分の一文字目だけを大文字に*/
-  border-bottom: 1px solid #383e45; /*要素の下辺に幅1px、色#383e45の直線（solid）の枠線を表示*/
-  margin: 0 auto 80px; /*要素の外側の余白を設定。上に0、左右に自動的な値（結果的に要素が左右中央寄せに）、下に80pxの余白が付く*/
-  width: fit-content; /*要素のサイズを中身ピッタリにする*/
+  color: #383e45;
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: capitalize;
+  border-bottom: 1px solid #383e45;
+  margin: 0 auto 80px;
+  width: fit-content;
 }
-/* 共通クラスここまで */
 
-/* ヘッダー */
 .header {
-  margin: 0 auto; /*要素の外側に余白を設定。上下に0、左右に自動的に。*/
-  padding: 10px 4%; /*要素の内側に余白を設定。上下に10px、左右に親要素（この場合はbody=デバイス幅）の4%ずつ余白がつく。*/
-  max-width: 960px; /*要素の最大横幅を960pxに*/
-  display: flex; /*要素の中にある要素を横並びに。*/
-  justify-content: space-between; /*display: flexで横並びにした要素を左右いっぱいに寄せる。空白（space）を横並びにしている要素の間（between）に。*/
-  align-items: center; /*display: flexで横並びにした要素を上下中央揃えにする。*/
+  margin: 0 auto;
+  padding: 10px 4%;
+  max-width: 960px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .header__logo {
-  width: 120px; /*画像が入っている*/
+  width: 120px;
 }
+
 .header__menu ul {
   display: flex;
   align-items: center;
-  gap: 30px; /*display: flexで横並びにした要素の間隔を30pxに*/
+  gap: 30px;
 }
+
 .header__link {
   font-size: 14px;
   color: #24292e;
   text-transform: capitalize;
 }
 
-/* FV */
 .fv {
-  height: 600px; /*お手本のサイトではFVの自転車の写真は高さ600pxが設定されています*/
+  height: 600px;
   margin-bottom: 80px;
 }
+
 .fv img {
-  height: 100%; /*heightを600pxに指定したいので、widthもheightも100%にします。*/
-  object-fit: cover; /*width: 100%; height: 100%;を設定していると画像が引き伸ばされてしまうのでその対策のためにobject-fit: cover;をかけて画像を正しく表示します*/
+  height: 100%;
+  object-fit: cover;
 }
 
-/* about */
 .about {
   margin-bottom: 100px;
 }
+
 .about__inner {
   display: flex;
   gap: 30px;
   align-items: center;
-  justify-content: center; /*display: flex;で横並びにした要素を左右中央に寄せます*/
+  justify-content: center;
 }
+
 .about__img {
   width: 100px;
   height: 100px;
-  border-radius: 50%; /*border-radiusで角丸を作り、50%とすることでwidthとheightが同じときに円にすることができます*/
-  overflow: hidden; /*要素から子要素がはみ出した場合、はみ出ている部分を非表示にします。今回はimgタグを囲んでいるdivタグにborder-radius: 50%;をかけているだけなので、overflow:hidden;を設定していないと、画像は丸くなりません。*/
-  flex-shrink: 0; /*display: flex;が掛けられている要素の子要素が想定のwidthよりも縮まないように設定します。*/
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
 }
+
 .about__text {
   width: 400px;
 }
+
 .about__name {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
-  text-transform: uppercase; /*小文字をすべて大文字にします*/
-}
-.about__paragraph {
-  font-size: 14px;
-  line-height: 1.2; /*行間を設定します。単位はなし。*/
-  letter-spacing: 0.01em; /*文字と文字の間隔を設定します。単位はem。*/
+  text-transform: uppercase;
 }
 
-/* bicycle */
+.about__paragraph {
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
 .bicycle {
   margin: 0 auto 100px;
 }
+
 .bicycle__inner {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
+
 .bicycle__item {
-  text-align: center; /*テキストを左右中央寄せにします。*/
+  text-align: center;
 }
+
 .bicycle__img {
   width: 280px;
 }
+
 .bicycle__title {
   font-size: 16px;
   font-weight: bold;
   margin: 16px 0px;
 }
+
 .bicycle__paragraph {
   font-size: 14px;
 }
 
-/* footer */
 .footer__text {
   margin-bottom: 8px;
   font-size: 8px;
   text-align: center;
-}
+}/*# sourceMappingURL=style.css.map */

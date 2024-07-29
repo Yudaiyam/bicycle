@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+a {
+  text-decoration: none;
+  transition: 0.3s all ease;
+}
+a:hover {
+  opacity: 0.8;
+}
+h1,
+h2,
+h3,
+p,
+a {
+  color: #24292e;
+}

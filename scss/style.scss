@@ -1,0 +1,31 @@
+/*
+【注意事項①】
+今回はstyle.cssが既にある状態からscssを作成→コンパイルします。
+そのためstyle.scssという名前で最初にscssファイルを作成してコンパイルしてしまうと、せっかく書いたstyle.cssの内容がすべて上書きされて消えてしまいます。
+そのため、最初はtest.scssなどのようにscssファイルの名前をstyle.scssではないものにして作業しましょう。
+生成されたtest.cssをindex.htmlで読み込んでレイアウト崩れしているところなどがないようであれば、最後にtest.scssの名前をstyle.scssと変えましょう。
+すべて完了したらcssフォルダー内のtest.cssは削除してしまって大丈夫です*/
+
+/*
+【注意事項②】
+今回の目的ははscssのファイル構成について理解していただきたくことです。
+このサイトは規模も小さいため、scssの変数と関数は今回は作成する必要はないです。
+そのためこのお手本でもglobalフォルダーは作成していません。
+ただ、今後は必ずglobalを作成する必要はあります。
+*/
+
+/*
+【scssのコンパイル方法とその設定変更について】
+scssのコンパイル（cssへの変換のこと）は「Live Sass Compiler」というVSCodeの拡張機能を使用します。
+以下のサイトの手順に従って、拡張機能をインストール、設定を変更しましょう。
+
+https://shogo-log.com/live-sass-compiler/
+
+※ savePath: "/css"; となるようにして下さい
+*/
+
+@charset "UTF-8";
+
+@use "foundation";
+@use "component";
+@use "layout";

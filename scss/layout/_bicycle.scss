@@ -1,0 +1,22 @@
+.bicycle {
+  margin: 0 auto 100px;
+}
+.bicycle__inner {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.bicycle__item {
+  text-align: center;
+}
+.bicycle__img {
+  width: 280px;
+}
+.bicycle__title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 16px 0px;
+}
+.bicycle__paragraph {
+  font-size: 14px;
+}
